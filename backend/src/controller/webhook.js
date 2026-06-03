@@ -1,5 +1,5 @@
 import {Webhook} from "svix";
-import User from "../model/User";
+import User from "../model/User.js";
 
 //To manage the mangae clerk user with database
 export const clerkWebhooks=async(req,res)=>{
