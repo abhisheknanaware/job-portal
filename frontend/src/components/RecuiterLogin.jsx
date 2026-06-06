@@ -1,8 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../assets/assets';
 import { AppContext } from '../context/AppContext';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 const RecuiterLogin = () => {
+    const navigate=useNavigate(); 
+
     const [state,setstate]=useState('Login');
     const [name,setname]=useState('');
     const [password,setPassword]=useState('');
@@ -11,13 +17,54 @@ const RecuiterLogin = () => {
     const [image,setImage]=useState(false);
     const [istextDatasubmitted,setisTextDataSubmitted]=useState(false);
 
-    const {setRecLogin}=useContext(AppContext);
+    const {setRecLogin,backendUrl,setCompanyToken,setCompanyData}=useContext(AppContext);
 
     const onSubmithandler=async(e)=>{
         e.preventDefault()
 
         if(state=='sign up' && !istextDatasubmitted){
-          setisTextDataSubmitted(true);
+          return setisTextDataSubmitted(true);
+        }
+
+        try {
+          if(state=="Login"){
+            const {data}=await axios.post(backendUrl+"/api/company/login",{
+              email,password
+            });
+
+            if(data.success){
+              setCompanyData(data.company);
+              setCompanyToken(data.token);
+              localStorage.setItem('companyToken',data.token);
+              setRecLogin(false);
+              navigate('/dashboard/manage-jobs');
+            }else{
+              toast.error(data.message);
+            }
+
+          }else{
+            const formData=new FormData()
+            formData.append('name',name);
+            formData.append('password',password);
+            formData.append('email',email);
+            formData.append('image',image);
+
+            const {data}=await axios.post(backendUrl+"/api/company/register",formData);
+            if(data.success){
+              setCompanyData(data.company);
+              setCompanyToken(data.token);
+              localStorage.setItem('companyToken',data.token);
+              setRecLogin(false);
+              navigate('/dashboard/manage-jobs');
+            }else{
+              toast.error(data.message);
+            }
+
+          }
+        } catch (error) {
+           console.log("FULL ERROR:", error);
+            console.log("RESPONSE:", error.response?.data);
+            toast.error(error.message);
         }
     }
 
