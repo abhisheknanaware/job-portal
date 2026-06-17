@@ -91,7 +91,7 @@ const Addjob = () => {
       </div>
 
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-xl'>
-        
+
         {/* Category Dropdown */}
         <div className="dropdown-container relative">
           <label className='block text-sm font-bold text-gray-700 mb-2'>Job Category</label>
@@ -109,7 +109,7 @@ const Addjob = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          
+
           {showCategoryDropdown && (
             <div className="absolute z-35 w-full mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg py-1 max-h-60 overflow-y-auto animate-scale-up">
               {JobCategories.map((cat, idx) => (
@@ -146,7 +146,7 @@ const Addjob = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          
+
           {showLocationDropdown && (
             <div className="absolute z-35 w-full mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg py-1 max-h-60 overflow-y-auto animate-scale-up">
               {JobLocations.map((loc, idx) => (
@@ -183,7 +183,7 @@ const Addjob = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          
+
           {showLevelDropdown && (
             <div className="absolute z-35 w-full mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg py-1 animate-scale-up">
               {['Beginner level', 'Intermediate level', 'Senior level'].map((lvl, idx) => (
