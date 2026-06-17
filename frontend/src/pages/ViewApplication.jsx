@@ -100,14 +100,19 @@ const ViewApplication = () => {
                 <td className='py-4 px-6 text-center relative'>
                   {applicant.status === "Pending" ?
                     (
-                      <div className='inline-block text-left group relative'>
-                        <button className='cursor-pointer px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg text-gray-500 font-bold hover:bg-gray-100 transition-colors text-xs'>
-                          Action
+                      <div className='flex items-center gap-2 justify-center'>
+                        <button 
+                          onClick={() => statusHandler(applicant._id, 'Accepted')} 
+                          className='px-3 py-1 text-xs font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 hover:bg-emerald-100 rounded-lg transition-colors cursor-pointer'
+                        >
+                          Accept
                         </button>
-                        <div className='z-20 hidden absolute right-0 top-full mt-1 w-28 bg-white border border-gray-100 rounded-xl shadow-lg group-hover:block overflow-hidden py-1 animate-fade-in'>
-                          <button onClick={() => statusHandler(applicant._id, 'Accepted')} className='block w-full text-left px-4 py-2 text-xs font-bold text-emerald-600 hover:bg-emerald-50 transition-colors'>Accept</button>
-                          <button onClick={() => statusHandler(applicant._id, 'Rejected')} className='block w-full text-left px-4 py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 transition-colors'>Reject</button>
-                        </div>
+                        <button 
+                          onClick={() => statusHandler(applicant._id, 'Rejected')} 
+                          className='px-3 py-1 text-xs font-bold text-rose-600 bg-rose-50 border border-rose-100 hover:bg-rose-100 rounded-lg transition-colors cursor-pointer'
+                        >
+                          Reject
+                        </button>
                       </div>
                     )
                     : (

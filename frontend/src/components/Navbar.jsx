@@ -35,7 +35,7 @@ const Navbar = () => {
               </Link>
               <p className="text-gray-300 font-light">|</p>
               <p className='max-sm:hidden text-gray-700 font-medium'>Hi, {user.firstName}</p>
-              <div className="border border-violet-100 rounded-full p-0.5 shadow-xs">
+              <div className="rounded-full shadow-xs">
                 <UserButton />
               </div>
             </div>
@@ -73,7 +73,7 @@ const Navbar = () => {
                                 </button>
                                 <p className='max-sm:hidden text-gray-700 font-bold text-sm'>Welcome, {companyData.name}</p>
                                 <div className='relative group cursor-pointer'>
-                                    <div className="w-9 h-9 rounded-full border-2 border-violet-200 p-0.5 overflow-hidden shadow-xs hover:border-violet-400 transition-colors">
+                                    <div className="w-9 h-9 rounded-full border-2 border-violet-200 overflow-hidden shadow-xs hover:border-violet-400 transition-colors">
                                         <img className='w-full h-full object-cover rounded-full' src={companyData.img} alt={companyData.name} />
                                     </div>
                                     {/* Hover Dropdown */}
