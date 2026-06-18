@@ -22,7 +22,11 @@ try {
 const app=express();
 
 app.use(cors());
-app.use(clerkMiddleware());
+if (process.env.CLERK_PUBLISHABLE_KEY) {
+    app.use(clerkMiddleware());
+} else {
+    console.warn("Clerk Publishable Key is missing. Clerk middleware is disabled.");
+}
 app.use(express.json());
 
 app.use(webhookRouter);
@@ -32,7 +36,11 @@ app.use('/api/company',CompanyRouter);
 app.use('/api/jobs',jobRouter);
 app.use('/api/users',UserRouter);
 
-Sentry.setupExpressErrorHandler(app);
+try {
+    Sentry.setupExpressErrorHandler(app);
+} catch (error) {
+    console.warn("Sentry setupExpressErrorHandler failed:", error);
+}
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
