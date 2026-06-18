@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 import { render } from '@react-email/render';
 import React from 'react'; // <--- We must import React to use createElement!
-import { ApplicationSuccessEmail } from '../emails/ApplicationSuccessEmail.jsx';
-import { ApplicationUpdateEmail } from '../emails/ApplicationUpdateEmail.jsx';
+import { ApplicationSuccessEmail } from '../emails/ApplicationSuccessEmail.js';
+import { ApplicationUpdateEmail } from '../emails/ApplicationUpdateEmail.js';
 
 // 1. Configure the transporter (Use your credentials here)
 const transporter = nodemailer.createTransport({
