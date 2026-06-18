@@ -35,8 +35,10 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 const port=process.env.PORT ||3000;
-await connectCloudinary();
-await connectDb();
+
+// Connect to services asynchronously (non-blocking for Vercel)
+connectCloudinary().catch((err) => console.error("Cloudinary Connection Error:", err));
+connectDb().catch((err) => console.error("MongoDB Connection Error:", err));
 
 if (!process.env.VERCEL) {
     app.listen(port,()=>{
