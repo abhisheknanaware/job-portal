@@ -36,12 +36,14 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 
 const port=process.env.PORT ||3000;
 await connectCloudinary();
-connectDb().then(()=>{
+await connectDb();
+
+if (!process.env.VERCEL) {
     app.listen(port,()=>{
     console.log(`server running on http://localhost:${port}`);
     })
-}).catch(()=>{
-    console.log("MongoDB Connection Error:", err);
-})
+}
+
+export default app;
 
 
