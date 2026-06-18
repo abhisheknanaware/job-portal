@@ -17,9 +17,8 @@ dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const app=express();
 
-app.use(clerkMiddleware());
-
 app.use(cors());
+app.use(clerkMiddleware());
 app.use(express.json());
 
 app.use(webhookRouter);
