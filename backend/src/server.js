@@ -13,7 +13,11 @@ import connectCloudinary from './config/cloudinary.js';
 import jobRouter from './Route/jobRoutes.js';
 import UserRouter from './Route/userroutes.js';
 
-dns.setServers(["8.8.8.8", "8.8.4.4"]);
+try {
+    dns.setServers(["8.8.8.8", "8.8.4.4"]);
+} catch (err) {
+    console.warn("Unable to set DNS servers, using default:", err);
+}
 
 const app=express();
 
