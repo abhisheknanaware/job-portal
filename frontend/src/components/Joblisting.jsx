@@ -10,7 +10,7 @@ const Joblisting = () => {
     const [currentpage,setCurrentpage]=useState(1);
 
     const [selectedcategories,setSelectedCategories]=useState([]);
-    const [selectedlocations,setSelectedLocations]=useState(jobs);
+    const [selectedlocations,setSelectedLocations]=useState([]);
 
     const [filteredJobs,setFilteredJobs]=useState(jobs);
 

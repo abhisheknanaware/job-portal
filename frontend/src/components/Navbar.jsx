@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const navigate=useNavigate();
     const location = useLocation();
-    const {setRecLogin,companyToken,companyData,setCompanyToken,setCompanyData}=useContext(AppContext);
+    const {setRecLogin,companyToken,companyData,setCompanyToken,setCompanyData,setSearchFilter,setIsSearched}=useContext(AppContext);
     const isDashboardPage = location.pathname.startsWith('/dashboard');
 
     const logout = () => {
@@ -20,10 +20,16 @@ const Navbar = () => {
         navigate('/');
     }
 
+    const handleLogoClick = () => {
+        setSearchFilter({ title: "", location: "" });
+        setIsSearched(false);
+        navigate('/');
+    }
+
   return companyToken===null?(
     <div className='sticky top-0 z-50 glass-nav shadow-xs py-4 transition-all duration-300'>
       <div className='container px-4 2xl:px-20 mx-auto flex items-center justify-between'>
-        <img onClick={()=>navigate('/')} className='cursor-pointer h-7 sm:h-8 hover:opacity-90 transition-opacity' src={assets.logo} alt='logo' />
+        <img onClick={handleLogoClick} className='cursor-pointer h-7 sm:h-8 hover:opacity-90 transition-opacity' src={assets.logo} alt='logo' />
         {
           user?
             <div className="flex items-center gap-4 sm:gap-6">
@@ -60,7 +66,7 @@ const Navbar = () => {
   ):(
     <div className='sticky top-0 z-50 glass-nav shadow-xs py-3.5 px-6'>
                     <div className='flex justify-between items-center w-full'>
-                        <img onClick={e => navigate('/')} className='h-7 sm:h-8 cursor-pointer hover:opacity-90 transition-opacity' src={assets.logo} alt="Logo" />
+                        <img onClick={handleLogoClick} className='h-7 sm:h-8 cursor-pointer hover:opacity-90 transition-opacity' src={assets.logo} alt="Logo" />
                         {companyData && (
                             <div className='flex items-center gap-3.5'>
                                 <button
